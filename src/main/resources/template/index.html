@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html lang="pt-br" xmlns="http://www.w3.org/1999/xhtml" xml:lang="pt-BR">
+    <head>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+        <title> Teste Lumis</title>
+        <meta name="description" content="" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+        <!-- CSS -->
+        <link rel="stylesheet" href="../css/main.css" />
+        <!--// CSS -->
+    </head>
+    <body>
+        <div class="wrapper--centered">
+            <div class="manual">
+                <h2>
+                    Instruções
+                </h2>
+				<h4>
+					Dados os arquivos, realize as seguintes tarefas:
+				</h4>
+                <ul class="manual__list">
+                    <li>
+                        Corrigir os erros de validação javascript e traduzir as mensagens para o português.
+                    </li>
+                    <li>
+                        Tratar o campo conteúdo para aceitar elementos html e exibir.
+                    </li>
+                    <li>
+                        Colocar uma máscara no campo data.
+                    </li>
+                    <li>
+                        Realizar as operações de CRUD, utilizado o arquivo dados.json para as devidas persistências e consultas.
+                    </li>                  
+                </ul>
+                <div class="manual__notice">
+                    <p>
+                        Após o término enviar o arquivo zipado para <strong>rh@lumis.com.br</strong>
+                    </p>
+                </div>
+            </div>    
+            <form>
+                <div class="input-wrapper">
+                    <label for="name">
+                        Nome
+                    </label>
+                    <input type="text" id="name" name="name" required >
+                </div>
+                <div class="input-wrapper">
+                    <label for="descricao">
+                        Conteudo
+                    </label>
+                    <textarea id="descricao" name="descricao" required>
+                    </textarea>
+                </div>
+                <div class="input-wrapper">
+                    <label for="data">
+                        Data de publicação
+                    </label>
+                    <input type="text" id="data" name="data" required >
+                </div>
+                <div class="input-wrapper">
+                    <label for="autor">
+                        Categoria
+                    </label>
+                    <div class="radioSimple">
+                        <input type="radio" class="input-radioSimple" name="optionId" required >
+                        <div class="radioSimple__item">
+                            <div class="radioSimple__check"></div>
+                        </div>
+                        <label class="input__label" for="optionId">Cat1</label>
+                    </div>
+                    <div class="radioSimple">
+                        <input type="radio" class="input-radioSimple" name="optionId" required >
+                        <div class="radioSimple__item">
+                            <div class="radioSimple__check"></div>
+                        </div>
+                        <label class="input__label" for="optionId">Cat4</label>
+                    </div>
+                    <div class="radioSimple">
+                        <input type="radio" class="input-radioSimple" name="optionId" required >
+                        <div class="radioSimple__item">
+                            <div class="radioSimple__check"></div>
+                        </div>
+                        <label class="input__label" for="optionId">Cat3</label>
+                    </div>
+                    <div class="radioSimple">
+                        <input type="radio" class="input-radioSimple" name="optionId" required >
+                        <div class="radioSimple__item">
+                            <div class="radioSimple__check"></div>
+                        </div>
+                        <label class="input__label" for="optionId">Cat2</label>
+                    </div>
+                </div>
+                <div class="input-wrapper">
+                    <button class="button">
+                        Criar
+                    </button>
+                </div>
+            </form>
+            
+            <div class="table">
+                <div class="table__header">
+                    <div class="table__line">
+                        <span class="table__item">
+                            Nome
+                        </span>
+                        <span class="table__item">
+                            Data de publicação
+                        </span>
+                        <span class="table__item">
+                            Categoria
+                        </span>
+                        <span class="table__item">
+                        </span>
+                    </div>
+                </div>
+                <div class="table__body">
+                    <div class="table__line">
+                        <span class="table__item">
+                            Candidato teste
+                        </span>
+                        
+                        <span class="table__item">
+                            12/02/2020
+                        </span>
+                        <span class="table__item">
+                           Categoria 1
+                        </span>
+                        <span class="table__item">
+                            <div class="table__buttons">
+                                <a href="detalhes.html" title="Ver">
+                                    <svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" data-prefix="fas" data-icon="eye" class="svg-inline--fa fa-eye fa-w-18" role="img" viewBox="0 0 576 512"><path fill="currentColor" d="M572.52 241.4C518.29 135.59 410.93 64 288 64S57.68 135.64 3.48 241.41a32.35 32.35 0 0 0 0 29.19C57.71 376.41 165.07 448 288 448s230.32-71.64 284.52-177.41a32.35 32.35 0 0 0 0-29.19zM288 400a144 144 0 1 1 144-144 143.93 143.93 0 0 1-144 144zm0-240a95.31 95.31 0 0 0-25.31 3.79 47.85 47.85 0 0 1-66.9 66.9A95.78 95.78 0 1 0 288 160z"/></svg>
+                                </a>
+                                <a href="/" title="Editar">
+                                    <svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" data-prefix="fas" data-icon="edit" class="svg-inline--fa fa-edit fa-w-18" role="img" viewBox="0 0 576 512"><path fill="currentColor" d="M402.6 83.2l90.2 90.2c3.8 3.8 3.8 10 0 13.8L274.4 405.6l-92.8 10.3c-12.4 1.4-22.9-9.1-21.5-21.5l10.3-92.8L388.8 83.2c3.8-3.8 10-3.8 13.8 0zm162-22.9l-48.8-48.8c-15.2-15.2-39.9-15.2-55.2 0l-35.4 35.4c-3.8 3.8-3.8 10 0 13.8l90.2 90.2c3.8 3.8 10 3.8 13.8 0l35.4-35.4c15.2-15.3 15.2-40 0-55.2zM384 346.2V448H64V128h229.8c3.2 0 6.2-1.3 8.5-3.5l40-40c7.6-7.6 2.2-20.5-8.5-20.5H48C21.5 64 0 85.5 0 112v352c0 26.5 21.5 48 48 48h352c26.5 0 48-21.5 48-48V306.2c0-10.7-12.9-16-20.5-8.5l-40 40c-2.2 2.3-3.5 5.3-3.5 8.5z"/></svg>
+                                </a>
+                                <a href="/" title="Apagar">
+                                    <svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" data-prefix="fas" data-icon="trash" class="svg-inline--fa fa-trash fa-w-14" role="img" viewBox="0 0 448 512"><path fill="currentColor" d="M432 32H312l-9.4-18.7A24 24 0 0 0 281.1 0H166.8a23.72 23.72 0 0 0-21.4 13.3L136 32H16A16 16 0 0 0 0 48v32a16 16 0 0 0 16 16h416a16 16 0 0 0 16-16V48a16 16 0 0 0-16-16zM53.2 467a48 48 0 0 0 47.9 45h245.8a48 48 0 0 0 47.9-45L416 128H32z"/></svg>                                
+                                </a>
+                            </div>
+                        </span>
+                    </div>
+                    <div class="table__line">
+                        <span class="table__item">
+                            Candidato teste
+                        </span>
+                        
+                        <span class="table__item">
+                            12/02/2020
+                        </span>
+                        <span class="table__item">
+                           Categoria 1
+                        </span>
+                        <span class="table__item">
+                            <div class="table__buttons">
+                                <a href="detalhes.html" title="Ver">
+                                    <svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" data-prefix="fas" data-icon="eye" class="svg-inline--fa fa-eye fa-w-18" role="img" viewBox="0 0 576 512"><path fill="currentColor" d="M572.52 241.4C518.29 135.59 410.93 64 288 64S57.68 135.64 3.48 241.41a32.35 32.35 0 0 0 0 29.19C57.71 376.41 165.07 448 288 448s230.32-71.64 284.52-177.41a32.35 32.35 0 0 0 0-29.19zM288 400a144 144 0 1 1 144-144 143.93 143.93 0 0 1-144 144zm0-240a95.31 95.31 0 0 0-25.31 3.79 47.85 47.85 0 0 1-66.9 66.9A95.78 95.78 0 1 0 288 160z"/></svg>
+                                </a>
+                                <a href="/" title="Editar">
+                                    <svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" data-prefix="fas" data-icon="edit" class="svg-inline--fa fa-edit fa-w-18" role="img" viewBox="0 0 576 512"><path fill="currentColor" d="M402.6 83.2l90.2 90.2c3.8 3.8 3.8 10 0 13.8L274.4 405.6l-92.8 10.3c-12.4 1.4-22.9-9.1-21.5-21.5l10.3-92.8L388.8 83.2c3.8-3.8 10-3.8 13.8 0zm162-22.9l-48.8-48.8c-15.2-15.2-39.9-15.2-55.2 0l-35.4 35.4c-3.8 3.8-3.8 10 0 13.8l90.2 90.2c3.8 3.8 10 3.8 13.8 0l35.4-35.4c15.2-15.3 15.2-40 0-55.2zM384 346.2V448H64V128h229.8c3.2 0 6.2-1.3 8.5-3.5l40-40c7.6-7.6 2.2-20.5-8.5-20.5H48C21.5 64 0 85.5 0 112v352c0 26.5 21.5 48 48 48h352c26.5 0 48-21.5 48-48V306.2c0-10.7-12.9-16-20.5-8.5l-40 40c-2.2 2.3-3.5 5.3-3.5 8.5z"/></svg>
+                                </a>
+                                <a href="/" title="Apagar">
+                                    <svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" data-prefix="fas" data-icon="trash" class="svg-inline--fa fa-trash fa-w-14" role="img" viewBox="0 0 448 512"><path fill="currentColor" d="M432 32H312l-9.4-18.7A24 24 0 0 0 281.1 0H166.8a23.72 23.72 0 0 0-21.4 13.3L136 32H16A16 16 0 0 0 0 48v32a16 16 0 0 0 16 16h416a16 16 0 0 0 16-16V48a16 16 0 0 0-16-16zM53.2 467a48 48 0 0 0 47.9 45h245.8a48 48 0 0 0 47.9-45L416 128H32z"/></svg>                                
+                                </a>
+                            </div>
+                        </span>
+                    </div>
+                    <div class="table__line">
+                        <span class="table__item">
+                            Candidato teste
+                        </span>
+                        
+                        <span class="table__item">
+                            12/02/2020
+                        </span>
+                        <span class="table__item">
+                           Categoria 1
+                        </span>
+                        <span class="table__item">
+                            <div class="table__buttons">
+                                <a href="detalhes.html" title="Ver">
+                                    <svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" data-prefix="fas" data-icon="eye" class="svg-inline--fa fa-eye fa-w-18" role="img" viewBox="0 0 576 512"><path fill="currentColor" d="M572.52 241.4C518.29 135.59 410.93 64 288 64S57.68 135.64 3.48 241.41a32.35 32.35 0 0 0 0 29.19C57.71 376.41 165.07 448 288 448s230.32-71.64 284.52-177.41a32.35 32.35 0 0 0 0-29.19zM288 400a144 144 0 1 1 144-144 143.93 143.93 0 0 1-144 144zm0-240a95.31 95.31 0 0 0-25.31 3.79 47.85 47.85 0 0 1-66.9 66.9A95.78 95.78 0 1 0 288 160z"/></svg>
+                                </a>
+                                <a href="/" title="Editar">
+                                    <svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" data-prefix="fas" data-icon="edit" class="svg-inline--fa fa-edit fa-w-18" role="img" viewBox="0 0 576 512"><path fill="currentColor" d="M402.6 83.2l90.2 90.2c3.8 3.8 3.8 10 0 13.8L274.4 405.6l-92.8 10.3c-12.4 1.4-22.9-9.1-21.5-21.5l10.3-92.8L388.8 83.2c3.8-3.8 10-3.8 13.8 0zm162-22.9l-48.8-48.8c-15.2-15.2-39.9-15.2-55.2 0l-35.4 35.4c-3.8 3.8-3.8 10 0 13.8l90.2 90.2c3.8 3.8 10 3.8 13.8 0l35.4-35.4c15.2-15.3 15.2-40 0-55.2zM384 346.2V448H64V128h229.8c3.2 0 6.2-1.3 8.5-3.5l40-40c7.6-7.6 2.2-20.5-8.5-20.5H48C21.5 64 0 85.5 0 112v352c0 26.5 21.5 48 48 48h352c26.5 0 48-21.5 48-48V306.2c0-10.7-12.9-16-20.5-8.5l-40 40c-2.2 2.3-3.5 5.3-3.5 8.5z"/></svg>
+                                </a>
+                                <a href="/" title="Apagar">
+                                    <svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" data-prefix="fas" data-icon="trash" class="svg-inline--fa fa-trash fa-w-14" role="img" viewBox="0 0 448 512"><path fill="currentColor" d="M432 32H312l-9.4-18.7A24 24 0 0 0 281.1 0H166.8a23.72 23.72 0 0 0-21.4 13.3L136 32H16A16 16 0 0 0 0 48v32a16 16 0 0 0 16 16h416a16 16 0 0 0 16-16V48a16 16 0 0 0-16-16zM53.2 467a48 48 0 0 0 47.9 45h245.8a48 48 0 0 0 47.9-45L416 128H32z"/></svg>                                
+                                </a>
+                            </div>
+                        </span>
+                    </div>
+                    <div class="table__line">
+                        <span class="table__item">
+                            Candidato teste
+                        </span>
+                        
+                        <span class="table__item">
+                            12/02/2020
+                        </span>
+                        <span class="table__item">
+                           Categoria 1
+                        </span>
+                        <span class="table__item">
+                            <div class="table__buttons">
+                                <a href="detalhes.html" title="Ver">
+                                    <svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" data-prefix="fas" data-icon="eye" class="svg-inline--fa fa-eye fa-w-18" role="img" viewBox="0 0 576 512"><path fill="currentColor" d="M572.52 241.4C518.29 135.59 410.93 64 288 64S57.68 135.64 3.48 241.41a32.35 32.35 0 0 0 0 29.19C57.71 376.41 165.07 448 288 448s230.32-71.64 284.52-177.41a32.35 32.35 0 0 0 0-29.19zM288 400a144 144 0 1 1 144-144 143.93 143.93 0 0 1-144 144zm0-240a95.31 95.31 0 0 0-25.31 3.79 47.85 47.85 0 0 1-66.9 66.9A95.78 95.78 0 1 0 288 160z"/></svg>
+                                </a>
+                                <a href="/" title="Editar">
+                                    <svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" data-prefix="fas" data-icon="edit" class="svg-inline--fa fa-edit fa-w-18" role="img" viewBox="0 0 576 512"><path fill="currentColor" d="M402.6 83.2l90.2 90.2c3.8 3.8 3.8 10 0 13.8L274.4 405.6l-92.8 10.3c-12.4 1.4-22.9-9.1-21.5-21.5l10.3-92.8L388.8 83.2c3.8-3.8 10-3.8 13.8 0zm162-22.9l-48.8-48.8c-15.2-15.2-39.9-15.2-55.2 0l-35.4 35.4c-3.8 3.8-3.8 10 0 13.8l90.2 90.2c3.8 3.8 10 3.8 13.8 0l35.4-35.4c15.2-15.3 15.2-40 0-55.2zM384 346.2V448H64V128h229.8c3.2 0 6.2-1.3 8.5-3.5l40-40c7.6-7.6 2.2-20.5-8.5-20.5H48C21.5 64 0 85.5 0 112v352c0 26.5 21.5 48 48 48h352c26.5 0 48-21.5 48-48V306.2c0-10.7-12.9-16-20.5-8.5l-40 40c-2.2 2.3-3.5 5.3-3.5 8.5z"/></svg>
+                                </a>
+                                <a href="/" title="Apagar">
+                                    <svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" data-prefix="fas" data-icon="trash" class="svg-inline--fa fa-trash fa-w-14" role="img" viewBox="0 0 448 512"><path fill="currentColor" d="M432 32H312l-9.4-18.7A24 24 0 0 0 281.1 0H166.8a23.72 23.72 0 0 0-21.4 13.3L136 32H16A16 16 0 0 0 0 48v32a16 16 0 0 0 16 16h416a16 16 0 0 0 16-16V48a16 16 0 0 0-16-16zM53.2 467a48 48 0 0 0 47.9 45h245.8a48 48 0 0 0 47.9-45L416 128H32z"/></svg>                                
+                                </a>
+                            </div>
+                        </span>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <script src="./js/jquery.min.js"></script>
+        <script src="./js/jquery.validate.min.js"></script>
+        <script>
+            $("form").validate({});
+        </script>
+    </body>
+</html>

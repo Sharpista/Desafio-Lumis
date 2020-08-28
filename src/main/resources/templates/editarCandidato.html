@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport"
+	content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<title>Teste Lumis</title>
+<meta name="description" content="" />
+<meta name="viewport"
+	content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+<!-- CSS -->
+<link rel="stylesheet" href="../css/main.css" />
+<!--// CSS -->
+</head>
+<body>
+	<div class="wrapper--centered">
+		<a th:href="@{/}" class="link-back"> <svg
+				xmlns="http://www.w3.org/2000/svg" aria-hidden="true"
+				focusable="false" data-prefix="fas" data-icon="arrow-left"
+				class="svg-inline--fa fa-arrow-left fa-w-14" role="img"
+				viewBox="0 0 448 512">
+				<path fill="currentColor"
+					d="M257.5 445.1l-22.2 22.2c-9.4 9.4-24.6 9.4-33.9 0L7 273c-9.4-9.4-9.4-24.6 0-33.9L201.4 44.7c9.4-9.4 24.6-9.4 33.9 0l22.2 22.2c9.5 9.5 9.3 25-.4 34.3L136.6 216H424c13.3 0 24 10.7 24 24v32c0 13.3-10.7 24-24 24H136.6l120.5 114.8c9.8 9.3 10 24.8.4 34.3z" /></svg>
+			Home
+		</a> <a th:href="@{/listarCandidatos}" class="link-back"> <svg
+				xmlns="http://www.w3.org/2000/svg" aria-hidden="true"
+				focusable="false" data-prefix="fas" data-icon="arrow-left"
+				class="svg-inline--fa fa-arrow-left fa-w-14" role="img"
+				viewBox="0 0 448 512">
+				<path fill="currentColor"
+					d="M257.5 445.1l-22.2 22.2c-9.4 9.4-24.6 9.4-33.9 0L7 273c-9.4-9.4-9.4-24.6 0-33.9L201.4 44.7c9.4-9.4 24.6-9.4 33.9 0l22.2 22.2c9.5 9.5 9.3 25-.4 34.3L136.6 216H424c13.3 0 24 10.7 24 24v32c0 13.3-10.7 24-24 24H136.6l120.5 114.8c9.8 9.3 10 24.8.4 34.3z" /></svg>
+			Listar
+		</a>
+
+		<form action="#"
+			th:action="@{/atualizarCandidato/{id}(id=${candidato.id})}"
+			th:object="${candidato}" method="post">
+
+
+			<div class="input-wrapper">
+				<input type="text" th:field="${candidato.id}" hidden="true">
+			</div>
+			<div class="input-wrapper">
+				<label for="name"> Nome </label> <input type="text" id="name"
+					th:field="${candidato.nome}" required="required">
+			</div>
+			<div class="input-wrapper">
+				<label for="descricao"> Conteudo </label>
+				<textarea id="descricao" th:field="${candidato.conteudo}"
+					required="required">
+                    </textarea>
+			</div>
+			<div class="input-wrapper">
+				<label for="data"> Data de publicação </label> <input type="text"
+					id="data" th:field="${candidato.dataDePublicacao}"
+					required="required" onkeypress="mascaraData(this)">
+			</div>
+			<div class="input-wrapper">
+
+				<label>Categorias</label>
+				<div
+					th:each="categoria : ${T(br.lumis.model.enumerator.EnumCategoria).values()}">
+					<div class="radioSimple">
+						<input type="radio" th:field="*{categoria}"
+							th:value="${categoria}" class="input-radioSimple"
+							required="required">
+						<div class="radioSimple__item">
+							<div class="radioSimple__check"></div>
+						</div>
+						<label class="custom-control-label"
+							th:for="${#ids.prev('categoria')}"
+							th:text="${categoria.displayValue}"></label>
+					</div>
+				</div>
+			</div>
+			<div class="input-wrapper">
+				<button class="button">Atualizar</button>
+			</div>
+		</form>
+	</div>
+	<script src="../js/jquery.validate.min.js"></script>
+	<script src="../js/scripts.js"></script>
+	<script
+		src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.11/jquery.mask.min.js"></script>
+	<script src="../js/jquery.validate.min.js"></script>
+	<script src="https://code.jquery.com/jquery-2.2.4.min.js"
+		integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44="
+		crossorigin="anonymous"></script>
+	<script>
+            $("form").validate({});
+            $("#button").click(function(){
+
+         	   $(".erromsg").remove();
+
+         	   var nome = $("#name");
+         	   var conteudo = $("#descricao");
+         	   var cat = $("#categoria");
+         	   
+         	   var erromsg = '<div class="erromsg"> Campo obrigatório <span></span></div>';
+         	   
+         	   if(!nome.val() || nome.val().length < 5){
+         	      nome.after(erromsg);
+         	      $(".erromsg span").text("nome corretamente");
+         	      return;
+         	   }
+
+         	   if(!conteudo.val()){
+         	      conteudo.after(erromsg);
+         	      $(".erromsg span").text("conteúdo");
+         	      return;
+         	   }
+
+         	  
+         	   if(!cat.val()){
+          	      cat.after(erromsg);
+          	      $(".erromsg span").text("categoria");
+          	      return;
+          	   }
+         	   
+
+         	    var settings = {
+         	   
+         	      "url": "script.php",
+         	      "method": "POST",
+         	      "headers": {
+         	        "Content-Type": "application/x-www-form-urlencoded",
+         	      },
+         	      "data": {
+         	        "nome": $("#name").val(),
+         	        "conteudo": $("#descricao").val(),
+         	        "cat": $("#categoria").val()
+
+         	      }
+         	    };
+
+         	    $.ajax(settings).done(function (response) {
+
+         	      console.log(response); 
+
+         	    });
+
+         	});
+        </script>
+</body>
+</html>

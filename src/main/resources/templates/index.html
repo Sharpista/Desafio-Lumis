@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport"
+	content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<title>Teste Lumis</title>
+<meta name="description" content="" />
+<meta name="viewport"
+	content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+<!-- CSS -->
+<link rel="stylesheet" href="../css/main.css" />
+<!--// CSS -->
+</head>
+<body>
+	<div class="wrapper--centered">
+		<div class="manual">
+			<h2>Instruções</h2>
+			<h4>Dados os arquivos, realize as seguintes tarefas:</h4>
+			<ul class="manual__list">
+				<li>Corrigir os erros de validação javascript e traduzir as
+					mensagens para o português.</li>
+				<li>Tratar o campo conteúdo para aceitar elementos html e
+					exibir.</li>
+				<li>Colocar uma máscara no campo data.</li>
+				<li>Realizar as operações de CRUD, utilizado o arquivo
+					dados.json para as devidas persistências e consultas.</li>
+			</ul>
+			<div class="manual__notice">
+				<p>
+					Após o término enviar o arquivo zipado para <strong>rh@lumis.com.br</strong>
+				</p>
+			</div>
+		</div>
+		<div th:errors="${candidato.dataDePublicacao}"></div>
+		<div th:errors="${candidato.conteudo}"></div>
+		<div th:errors="${candidato.nome}"></div>
+		<div th:errors="${candidato.categoria}"></div>
+		<div th:errors="${candidato.*}"></div>
+
+		<div th:if="${#fields.hasErrors('${candidato}')}"></div>
+		<div th:if="${#fields.hasErrors('${candidato.dataDePublicacao}')}"></div>
+		<div th:if="${#fields.hasErrors('${candidato.nome}')}"></div>
+		<div th:if="${#fields.hasErrors('${candidato.conteudo}')}"></div>
+		<div th:if="${#fields.hasErrors('${candidato.categoria}')}"></div>
+		<div th:if="${#fields.hasErrors('${candidato.*}')}"></div>
+
+		<form action="#" th:action="@{/gravar}" th:object="${candidato}"
+			method="post">
+			<div class="input-wrapper">
+				<label for="name"> Nome </label> <input type="text" id="name"
+					th:field="*{nome}" required="required">
+			</div>
+			<div class="input-wrapper">
+				<label for="descricao"> Conteudo </label>
+				<textarea id="descricao" th:field="*{conteudo}" required="required">
+                    </textarea>
+			</div>
+			<div class="input-wrapper">
+				<label for="data"> Data de publicação </label> <input type="text"
+					id="dt" th:field="*{dataDePublicacao}" required="required"
+					class="dt" onkeypress="mascaraData(this)">
+			</div>
+			<div class="input-wrapper">
+
+				<label>Categorias</label>
+				<div
+					th:each="categoria : ${T(br.lumis.model.enumerator.EnumCategoria).values()}">
+					<div class="radioSimple">
+						<input type="radio" th:field="*{categoria}"
+							th:value="${categoria}" class="input-radioSimple"
+							required="required">
+						<div class="radioSimple__item">
+							<div class="radioSimple__check"></div>
+						</div>
+						<label class="custom-control-label"
+							th:for="${#ids.prev('categoria')}"
+							th:text="${categoria.displayValue}"></label>
+					</div>
+				</div>
+			</div>
+			<div class="input-wrapper">
+				<button class="button" type="submit" id="button">Criar</button>
+			</div>
+		</form>
+		<div class="input-wrapper">
+			<a th:href="@{/listarCandidatos}" title="Listar"> <svg
+					width="5em" height="5em" viewBox="0 0 16 16" class="bi bi-list"
+					style="color: #c54839;" fill="currentColor"
+					xmlns="http://www.w3.org/2000/svg">
+  						<path fill-rule="evenodd"
+						d="M2.5 11.5A.5.5 0 0 1 3 11h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5zm0-4A.5.5 0 0 1 3 7h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5zm0-4A.5.5 0 0 1 3 3h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5z" />
+						</svg>
+			</a>
+		</div>
+
+		<script src="../js/jquery.validate.min.js"></script>
+		<script src="../js/scripts.js"></script>
+		<script
+			src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.11/jquery.mask.min.js"></script>
+		<script src="../js/jquery.validate.min.js"></script>
+		<script src="https://code.jquery.com/jquery-2.2.4.min.js"
+			integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44="
+			crossorigin="anonymous"></script>
+		<script>
+            $("form").validate({});
+            
+            $("#button").click(function(){
+
+            	   $(".erromsg").remove();
+
+            	   var nome = $("#name");
+            	   var conteudo = $("#descricao");
+            	   var cat = $("#categoria");
+            	   
+            	   var erromsg = '<div class="erromsg">Preencha o campo <span></span></div>';
+            	   
+            	   if(!nome.val() || nome.val().length < 5){
+            	      nome.after(erromsg);
+            	      $(".erromsg span").text("nome corretamente");
+            	      return;
+            	   }
+
+            	   if(!conteudo.val()){
+            	      conteudo.after(erromsg);
+            	      $(".erromsg span").text("conteúdo");
+            	      return;
+            	   }
+
+            	  
+            	   if(!cat.val()){
+             	      cat.after(erromsg);
+             	      $(".erromsg span").text("categoria");
+             	      return;
+             	   }
+            	   
+
+            	    var settings = {
+            	   
+            	      "url": "script.php",
+            	      "method": "POST",
+            	      "headers": {
+            	        "Content-Type": "application/x-www-form-urlencoded",
+            	      },
+            	      "data": {
+            	        "nome": $("#name").val(),
+            	        "conteudo": $("#descricao").val(),
+            	        "cat": $("#categoria").val()
+
+            	      }
+            	    };
+
+            	    $.ajax(settings).done(function (response) {
+
+            	      console.log(response); 
+
+            	    });
+
+            	});
+         
+        </script>
+</body>
+</html>
